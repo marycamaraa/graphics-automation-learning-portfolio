@@ -1,6 +1,6 @@
 # B&EUT - Graphics and Automation Learning Portfolio
 
-This repository is a personal learning portfolio designed to document my progress as I learn core web development languages and technologies. It includes notes, resources, and mini projects that demonstrate my understanding and growth in areas such as AWS, kubernete, Docker
+This repository is a personal learning portfolio designed to document my progress as I learn core development languages and technologies. It includes notes, resources, and mini projects that demonstrate my understanding and growth in areas such as AWS, kubernete, Docker
 
 ## Contents
 ### Backend
