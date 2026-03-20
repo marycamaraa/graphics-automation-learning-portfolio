@@ -21,13 +21,13 @@ This document tracks tickets, features, bugs, improvements, and technical tasks.
 </tr>
 
 <tr>
-<td>TKT-001</td>
-<td></td>
-<td>Feature / Bug / Refactor</td>
-<td>Not Started</td>
-<td>Low / Medium / High</td>
-<td></td>
-<td></td>
+<td>BSDGI-2761</td>
+<td>backend: docker| bash| aws</td>
+<td>Feature</td>
+<td>Completed</td>
+<td>Medium</td>
+<td>09/03/2026</td>
+<td>https://github.com/bbc/eng-ga-mongodb-backup/pull/2</td>
 </tr>
 
 <tr>
