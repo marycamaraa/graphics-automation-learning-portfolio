@@ -22,8 +22,8 @@ This document tracks tickets, features, bugs, improvements, and technical tasks.
 
 <tr>
 <td>BSDGI-2761</td>
+<td>Easy Restoration of MongoDB Backups</td>
 <td>backend: docker| bash| aws</td>
-<td>Feature</td>
 <td>Completed</td>
 <td>Medium</td>
 <td>09/03/2026</td>
