@@ -199,12 +199,11 @@ const liquidAmount: number = ouncesToCups(3);
 //* This correctly results in an error being surfaced.
 
 //! EXAMPLE 2
-function getRandomNumber(){
+function getRandomNumber() {
   return Math.random();
 }
 
 const myVar = getRandomNumber();
-
 
 //--------------------------------------------------------------------------------------
 // ==============================
@@ -225,8 +224,7 @@ function createGreeting(name?: string): string {
 
   return undefined;
   // Typescript Error: Type 'undefined' is not assignable to type 'string'.
-};
-
+}
 
 //! EXAMPLE 2
 // We can also explicitly state return types for arrow functions. We’ll see the same kinds of error messages for both function types.
@@ -239,38 +237,61 @@ const createArrowGreeting = (name?: string): string => {
   // Typescript Error: Type 'undefined' is not assignable to type 'string'.
 };
 
-
 //! EXAMPLE 3
 
-import {getUserChoice,f1,f2,f3,f4,f5,f6,f7,f8,f9,f10,f11,f12} from './resources'
+import {
+  getUserChoice,
+  f1,
+  f2,
+  f3,
+  f4,
+  f5,
+  f6,
+  f7,
+  f8,
+  f9,
+  f10,
+  f11,
+  f12,
+} from "./resources";
 
-
-function returnFruit():string{
+function returnFruit(): string {
   let num = getUserChoice();
-  switch(num){
-    case 1 : return f1();
-		case 2 : return f2();
-		case 3 : return f3();
-		case 4 : return f4();
-		case 5 : return f5();
-		case 6 : return f6();
-		case 7 : return f7();
-		case 8 : return f8();
-		case 9 : return f9();
-		case 10 : return f10();
-		case 11 : return f11();
-		case 12 : return f12();
+  switch (num) {
+    case 1:
+      return f1();
+    case 2:
+      return f2();
+    case 3:
+      return f3();
+    case 4:
+      return f4();
+    case 5:
+      return f5();
+    case 6:
+      return f6();
+    case 7:
+      return f7();
+    case 8:
+      return f8();
+    case 9:
+      return f9();
+    case 10:
+      return f10();
+    case 11:
+      return f11();
+    case 12:
+      return f12();
   }
-  return 'durian.jpg'
+  return "durian.jpg";
 }
 
-console.log(returnFruit())
+console.log(returnFruit());
 //The problematic function is f9()
-
 
 //--------------------------------------------------------------------------------------
 // ==============================
-//*     VOID RETURN TYPES 
+//*     VOID RETURN TYPES
 // ==============================
 
 /*
@@ -280,37 +301,102 @@ For these reasons, it is often preferred to use type annotations for function, e
 */
 
 //! EXAMPLE 1
-function logGreeting(name: string){
-  console.log(`Hello, ${name}!`)
+function logGreeting(name: string) {
+  console.log(`Hello, ${name}!`);
 }
-
 
 // The function logGreeting() simply logs a greeting to the console. There is no returned value, so we must treat the return type as void.
 //*  A proper type annotation for this function would look like this:
 
-function logGreeting(name:string): void{
-  console.log(`Hello, ${name}!`)
+function logGreeting(name: string): void {
+  console.log(`Hello, ${name}!`);
 }
 
 //! EXAMPLE 2
-function makeFruitSalad(fruit1:string, fruit2:string):void{
-  let salad=fruit1+fruit2+fruit2+fruit1+fruit2+fruit1+fruit1;
+function makeFruitSalad(fruit1: string, fruit2: string): void {
+  let salad = fruit1 + fruit2 + fruit2 + fruit1 + fruit2 + fruit1 + fruit1;
   console.log(salad);
 }
 
-makeFruitSalad('banana','pineapple');
+makeFruitSalad("banana", "pineapple");
 
 //--------------------------------------------------------------------------------------
 // ==============================
-//*      DOCUMENTING FUNCTIONS 
+//*      DOCUMENTING FUNCTIONS
 // ==============================
 
 /*
-TypeScript recognizes JavaScript comment syntax:
+Documentation comments are especially useful for documenting functions. 
+We place a function’s documentation comment in the code directly above the function declaration.
+We can use special tags within the comment to highlight certain aspects of the function. 
 */
 
 //! EXAMPLE 1
+// TypeScript recognizes JavaScript comment syntax:
+
+// This is a single line comment
+
+/*
+This is a 
+multiline
+comment
+*/
 
 //! EXAMPLE 2
+// But it’s common in TypeScript to see a third comment style: documentation comments.
+// A documentation comment is denoted with the first line /** and a final line */
+// It’s common for each line within the comment to start with an asterisk (*):
+
+/**
+ * This is a documentation comment
+ */
 
 //! EXAMPLE 3
+// We can use @param to describe each of the function’s parameters, and we can use @returns to describe what the function returns:
+
+/**
+ * Returns the sum of two numbers.
+ *
+ * @param x - The first input number
+ * @param y - The second input number
+ * @returns The sum of `x` and `y`
+ *
+ */
+function getSum(x: number, y: number): number {
+  return x + y;
+}
+
+// NOTE: Many text editors will helpfully display documentation comments, for example, when hovering over a function name.
+
+//Task 1
+
+/**
+Prints the provided string parameters in the order:
+* first, second, second, first, second, first, first
+ *
+ * @param fruit1 - The first input string
+ * @param fruit2 - The second input string
+ * @returns - The sum of 'fruit1' and 'fruit2'
+ */
+
+function makeFruitSalad(fruit1: string, fruit2: string): void {
+  let salad = fruit1 + fruit2 + fruit2 + fruit1 + fruit2 + fruit1 + fruit1;
+  console.log(salad);
+}
+
+/**
+ * Return - Loops the input value number of times logging a string in the format: I'm [status]
+ *
+ * @param status - A string input
+ * Default value: 'not ready'
+ * @param repeat - A number value.
+ * Default value: 1
+ *@returns No return value
+ *
+ */
+
+function proclaim(status = "not ready...", repeat = 1) {
+  for (let i = 0; i < repeat; i += 1) {
+    console.log(`I'm ${status}`);
+  }
+}
