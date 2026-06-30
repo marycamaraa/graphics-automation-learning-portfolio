@@ -40,7 +40,7 @@ let firstName1 = "Anders";
 //NOTE: This will create an equivalent .js file in the same directory as well as surface any errors found by the TypeScript transcompiler.
 
 //! EXAMPLE 3
-// Great work! You’ve now created an index.js file (you can confirm this by running the ls command in your terminal).
+// You’ve now created an index.js file (you can confirm this by running the ls command in your terminal).
 // Run the resultant JavaScript file with the node command:
 // node index.js
 
