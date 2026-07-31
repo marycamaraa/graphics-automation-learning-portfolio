@@ -400,3 +400,102 @@ function proclaim(status = "not ready...", repeat = 1) {
     console.log(`I'm ${status}`);
   }
 }
+
+//--------------------------------------------------------------------------------------
+// ==============================
+//*      COMMON KEY VALUE PAIR
+// ==============================
+
+/*
+When we put type members in a union, TypeScript will only allow us to use the common methods and properties that all members of the union share. 
+
+*/
+
+//! EXAMPLE 1
+const batteryStatus: boolean | number = false;
+
+batteryStatus.toString(); // No TypeScript error
+batteryStatus.toFixed(2); // TypeScript error
+
+//NOTE: Since batteryStatus can be a boolean or a number, TypeScript will only allow us to call methods that both number and boolean share. They both share .toString(), so we’re good there. But, since only number has a .toFixed() method, TypeScript will complain if we try to call it.
+
+//! EXAMPLE 2
+// This rule also applies to type objects that we define. Take this code:
+type Goose = {
+  isPettable: boolean;
+  hasFeathers: boolean;
+  canThwartAPicnic: boolean;
+};
+
+type Moose = {
+  isPettable: boolean;
+  hasHoofs: boolean;
+};
+
+const pettingZooAnimal: Goose | Moose = { isPettable: true };
+
+console.log(pettingZooAnimal.isPettable); // No TypeScript error
+console.log(pettingZooAnimal.hasHoofs); // TypeScript error
+//NOTE: Like before, since .isPettable is on both Goose and Moose types, TypeScript will allow us to call it. But since .hasHoofs is only a property on Moose, we cannot call that method on pettingZooAnimal. Any properties or methods that are not shared by all of the union’s members won’t be allowed and will produce a TypeScript error.
+
+//! EXAMPLE 3
+type Like = {
+  username: string;
+  displayName: string;
+};
+
+type Share = {
+  username: string;
+  displayName: string;
+};
+
+function getFriendNameFromEvent(event: Like | Share) {
+  return event.displayName || event.username;
+}
+
+const newEvent = {
+  username: "vkrauss",
+  displayName: "Veronica Krauss",
+};
+
+const friendName = getFriendNameFromEvent(newEvent);
+
+console.log(`You have an update from ${friendName}.`);
+
+//--------------------------------------------------------------------------------------
+// ==============================
+//*      UNIONS WITH LITTERAL TYPE
+// ==============================
+
+/*
+We can use literal types with TypeScript unions. Literal type unions are useful when we want to create distinct states within a program.
+
+*/
+
+//! EXAMPLE 1
+// For instance, if we were writing the code that controlled stoplights, we might write a program like this:
+type Color = 'green' | 'yellow' | 'red';
+
+function changeLight(color: Color) {
+  // ...
+}
+//NOTE: With the code above, we could ensure that wherever changeLight() is called, that it gets passed only allowed stoplight colors. If we tried to call changeLight('purple'), TypeScript would complain, since that is not a valid stoplight color.
+//NOTE: This technique allows us to write funtions that are specific about the states they can handle, which helps us write code that’s less prone to errors.
+
+//! EXAMPLE 2
+type Status = "idle" | "downloading" | "complete";
+
+function downloadStatus(status: Status) {
+  if (status === "idle") {
+    console.log("Downloading");
+  }
+
+  if (status === "downloading") {
+    console.log("Downloading");
+  }
+
+  if (status === "complete") {
+    console.log("Your downloading is complete!");
+  }
+}
+downloadStatus("idle");
